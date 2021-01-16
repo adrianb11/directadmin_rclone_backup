@@ -1,0 +1,14 @@
+.button {
+    width: 100%;
+    background-color: #785580;
+    border: none;
+    color: #fff;
+    border-radius: 2px;
+    padding: 7px 10px;
+}
+
+.form {
+    border-radius: 3px;
+    padding: 10px 15px;
+    background-color: rgba(0, 0, 0, 0.2);
+}

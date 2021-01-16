@@ -1,0 +1,29 @@
+#!/usr/local/bin/php -n
+<?php
+include('elements/header.php');
+
+if (isset($_SERVER['QUERY_STRING'])) {
+    if (isset($output['tab'])) {
+        $tab = $output['tab'];
+    } else {
+        $tab = 'overview';
+    }
+
+    if (isset($output['form_id'])) {
+        if ($output['form_id'] === 'options') {
+            include('elements/process/process_options.php');
+        }
+        if ($output['form_id'] === 'cron') {
+            include('elements/process/process_croncreate.php');
+        }
+    }
+
+    if (isset($output['software']) || isset($output['run_script'])) {
+        include('elements/process/process_settings.php');
+    }
+}
+
+include('elements/menu.php');
+include('elements/notification.php');
+include('elements/page.php');
+include('elements/footer.php'); ?>
