@@ -7,8 +7,7 @@
  */
 function ReadINI($file)
 {
-    $array = parse_ini_file($file, true);
-    return $array;
+    return parse_ini_file($file, true);
 }
 
 
@@ -48,8 +47,7 @@ function WriteINI($data, $filepath)
  */
 function GetDirContents($dir)
 {
-    $fileArray = array_diff(scandir($dir), array('.', '..'));
-    return $fileArray;
+    return array_diff(scandir($dir), array('.', '..'));
 }
 
 
@@ -58,7 +56,7 @@ function GetDirContents($dir)
  * @param $config_data
  * @param $exclude
  * @param $post
- * @return mixed
+ * @return array
  */
 function WriteConfigData($config_data, $exclude, $post)
 {

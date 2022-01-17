@@ -22,7 +22,7 @@
 
 **Implemented enhancements:**
 
-- Stored version.html on Github for easier updating.
+- Stored version.html on GitHub for easier updating.
 - [Updated plugin.conf to reflect version changes](https://github.com/adrianb11/directadmin_rclone_backup/tree/master/plugin.conf)
 
 ## [v1.0.1](https://github.com/adrianb11/directadmin_rclone_backup/tree/v1.0.1) (2021-01-17)

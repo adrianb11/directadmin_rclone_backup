@@ -4,7 +4,7 @@
 # Copyright (c) 2010-2014     Ruediger Meier <sweet_f_a@gmx.de>
 #                             (https://github.com/rudimeier/)
 #
-# License: BSD-3-Clause, see LICENSE file
+# License: BSD-3-Clause, see LICENSE.md file
 #
 # Simple INI file parser.
 #

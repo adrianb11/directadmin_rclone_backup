@@ -26,7 +26,7 @@ $config_data = ReadINI($input_config_file);
  */
 $domainJSON = getApi("/CMD_API_DOMAIN?action=document_root");
 $domainRESULT = json_decode($domainJSON, true);
-printArray($domainRESULT);
+
 foreach ($domainRESULT["users"] as $userKEY => $userVALUE) {
     if ($config_data["DIRECTADMIN_WWW"]["directadmin_user"] == $userKEY) {
         $directadmin_user_select .= "<option value='" . $userKEY . "' selected='selected'>" . $userKEY . "</option>";
@@ -272,27 +272,27 @@ Start Main Content
                 <div class="row">
                     <div class="col">
                         <div class="form-floating">
-                            <a href="javascript:cronHelperSelectAll('#cron-minutes')" ><?php echo $language["EVERY_MINUTE"]; ?></a>
+                            <a href="javascript:cronHelperSelectAll('#cron-minutes')"><?php echo $language["EVERY_MINUTE"]; ?></a>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-floating">
-                            <a href="javascript:cronHelperSelectAll('#cron-hours')" ><?php echo $language["EVERY_HOUR"]; ?></a>
+                            <a href="javascript:cronHelperSelectAll('#cron-hours')"><?php echo $language["EVERY_HOUR"]; ?></a>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-floating">
-                            <a href="javascript:cronHelperSelectAll('#cron-dom')" ><?php echo $language["EVERY_DAY"]; ?></a>
+                            <a href="javascript:cronHelperSelectAll('#cron-dom')"><?php echo $language["EVERY_DAY"]; ?></a>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-floating">
-                            <a href="javascript:cronHelperSelectAll('#cron-months')" ><?php echo $language["EVERY_MONTH"]; ?></a>
+                            <a href="javascript:cronHelperSelectAll('#cron-months')"><?php echo $language["EVERY_MONTH"]; ?></a>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-floating">
-                            <a href="javascript:cronHelperSelectAll('#cron-dow')" ><?php echo $language["EVERY_WEEK_DAY"]; ?></a>
+                            <a href="javascript:cronHelperSelectAll('#cron-dow')"><?php echo $language["EVERY_WEEK_DAY"]; ?></a>
                         </div>
                     </div>
                 </div>
@@ -311,31 +311,36 @@ Start Main Content
                 <div class="row">
                     <div class="col">
                         <div class="form-floating">
-                            <input value="<?php echo $config_data["CRON"]["cron_output_minutes"]; ?>" id="cron_output_minutes" name="cron_output_minutes" class="form-control"/>
+                            <input value="<?php echo $config_data["CRON"]["cron_output_minutes"]; ?>"
+                                   id="cron_output_minutes" name="cron_output_minutes" class="form-control"/>
                             <label for="cron_output_minutes"><?php echo $language["MINUTES"]; ?></label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-floating">
-                            <input value="<?php echo $config_data["CRON"]["cron_output_hours"]; ?>" id="cron_output_hours" name="cron_output_hours" class="form-control"/>
+                            <input value="<?php echo $config_data["CRON"]["cron_output_hours"]; ?>"
+                                   id="cron_output_hours" name="cron_output_hours" class="form-control"/>
                             <label for="cron_output_hours"><?php echo $language["HOURS"]; ?></label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-floating">
-                            <input value="<?php echo $config_data["CRON"]["cron_output_dom"]; ?>" id="cron_output_dom" name="cron_output_dom" class="form-control"/>
+                            <input value="<?php echo $config_data["CRON"]["cron_output_dom"]; ?>" id="cron_output_dom"
+                                   name="cron_output_dom" class="form-control"/>
                             <label for="cron_output_dom"><?php echo $language["DAY_OF_MONTH"]; ?></label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-floating">
-                            <input value="<?php echo $config_data["CRON"]["cron_output_months"]; ?>" id="cron_output_months" name="cron_output_months" class="form-control"/>
+                            <input value="<?php echo $config_data["CRON"]["cron_output_months"]; ?>"
+                                   id="cron_output_months" name="cron_output_months" class="form-control"/>
                             <label for="cron_output_months"><?php echo $language["MONTH"]; ?></label>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-floating">
-                            <input value="<?php echo $config_data["CRON"]["cron_output_dow"]; ?>" id="cron_output_dow" name="cron_output_dow" class="form-control"/>
+                            <input value="<?php echo $config_data["CRON"]["cron_output_dow"]; ?>" id="cron_output_dow"
+                                   name="cron_output_dow" class="form-control"/>
                             <label for="cron_output_dow"><?php echo $language["WEEK_DAY"]; ?></label>
                         </div>
                     </div>
@@ -355,21 +360,32 @@ Start Main Content
                 <div class="row">
                     <div class="col">
                         <div class="list-group">
-                            <a href="javascript:cronTemplate(0);" title="" class="a-template"><?php echo $language["SELECT_ALL"]; ?></a>
-                            <a href="javascript:cronTemplate(1);" title="" class="a-template"><?php echo $language["EVERY_5_MINUTES"]; ?></a>
-                            <a href="javascript:cronTemplate(2);" title="" class="a-template"><?php echo $language["EVERY_15_MINUTES"]; ?></a>
-                            <a href="javascript:cronTemplate(3);" title="" class="a-template"><?php echo $language["EVERY_30_MINUTES"]; ?></a>
-                            <a href="javascript:cronTemplate(4);" title="" class="a-template"><?php echo $language["EVERY_HOUR"]; ?></a>
-                            <a href="javascript:cronTemplate(5);" title="" class="a-template"><?php echo $language["EVERY_3_HOURS"]; ?></a>
+                            <a href="javascript:cronTemplate(0);" title=""
+                               class="a-template"><?php echo $language["SELECT_ALL"]; ?></a>
+                            <a href="javascript:cronTemplate(1);" title=""
+                               class="a-template"><?php echo $language["EVERY_5_MINUTES"]; ?></a>
+                            <a href="javascript:cronTemplate(2);" title=""
+                               class="a-template"><?php echo $language["EVERY_15_MINUTES"]; ?></a>
+                            <a href="javascript:cronTemplate(3);" title=""
+                               class="a-template"><?php echo $language["EVERY_30_MINUTES"]; ?></a>
+                            <a href="javascript:cronTemplate(4);" title=""
+                               class="a-template"><?php echo $language["EVERY_HOUR"]; ?></a>
+                            <a href="javascript:cronTemplate(5);" title=""
+                               class="a-template"><?php echo $language["EVERY_3_HOURS"]; ?></a>
                         </div>
                     </div>
                     <div class="col">
                         <div class="list-group">
-                            <a href="javascript:cronTemplate(6);" title="" class="a-template"><?php echo $language["EVERY_4_HOURS"]; ?></a>
-                            <a href="javascript:cronTemplate(7);" title="" class="a-template"><?php echo $language["EVERY_6_HOURS"]; ?></a>
-                            <a href="javascript:cronTemplate(8);" title="" class="a-template"><?php echo $language["EVERY_12_HOURS"]; ?></a>
-                            <a href="javascript:cronTemplate(9);" title="" class="a-template"><?php echo $language["EVERY_DAY_AT"]; ?> 12:30am</a>
-                            <a href="javascript:cronTemplate(10);" title="" class="a-template"><?php echo $language["EVERY_SUNDAY_AT"]; ?> 12:10am</a>
+                            <a href="javascript:cronTemplate(6);" title=""
+                               class="a-template"><?php echo $language["EVERY_4_HOURS"]; ?></a>
+                            <a href="javascript:cronTemplate(7);" title=""
+                               class="a-template"><?php echo $language["EVERY_6_HOURS"]; ?></a>
+                            <a href="javascript:cronTemplate(8);" title=""
+                               class="a-template"><?php echo $language["EVERY_12_HOURS"]; ?></a>
+                            <a href="javascript:cronTemplate(9);" title=""
+                               class="a-template"><?php echo $language["EVERY_DAY_AT"]; ?> 12:30am</a>
+                            <a href="javascript:cronTemplate(10);" title=""
+                               class="a-template"><?php echo $language["EVERY_SUNDAY_AT"]; ?> 12:10am</a>
                         </div>
                     </div>
                 </div>
@@ -411,7 +427,8 @@ Start Main Content
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="form-floating">
-                            <input placeholder="*" class="form-control" name="filehost_root_path" id="filehost_root_path"
+                            <input placeholder="*" class="form-control" name="filehost_root_path"
+                                   id="filehost_root_path"
                                    value="<?php echo $config_data["FILEHOST"]["filehost_root_path"] ?>" required/>
                             <label for="filehost_root_path"><?php echo $language["FILEHOST_ROOT_PATH"]; ?></label>
                         </div>
@@ -543,7 +560,10 @@ Start Main Content
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="form-floating">
-                            <input placeholder="*" class="form-control" name="directadmin_backup_path" id="directadmin_backup_path" value="<?php echo $config_data["DIRECTADMIN_WWW"]["directadmin_backup_path"]; ?>" required/>
+                            <input placeholder="*" class="form-control" name="directadmin_backup_path"
+                                   id="directadmin_backup_path"
+                                   value="<?php echo $config_data["DIRECTADMIN_WWW"]["directadmin_backup_path"]; ?>"
+                                   required/>
                             <label for="directadmin_backup_path"><?php echo $language["BACKUP_PATH"]; ?></label>
                         </div>
                     </div>
@@ -559,7 +579,9 @@ Start Main Content
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="form-floating">
-                            <input placeholder="*" class="form-control" name="directadmin_exclude_path" id="directadmin_exclude_path" value="<?php echo $config_data["DIRECTADMIN_WWW"]["directadmin_exclude_path"]; ?>"/>
+                            <input placeholder="*" class="form-control" name="directadmin_exclude_path"
+                                   id="directadmin_exclude_path"
+                                   value="<?php echo $config_data["DIRECTADMIN_WWW"]["directadmin_exclude_path"]; ?>"/>
                             <label for="directadmin_exclude_path"><?php echo $language["EXCLUDE_FOLDER"]; ?></label>
                         </div>
                     </div>
@@ -713,7 +735,9 @@ Start Main Content
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="form-floating">
-                            <input placeholder="Enter email address." class="form-control" name="send_email_address" id="send_email_address" value="<?php echo $config_data["EMAIL"]["send_email_address"] ?>" required/>
+                            <input placeholder="Enter email address." class="form-control" name="send_email_address"
+                                   id="send_email_address"
+                                   value="<?php echo $config_data["EMAIL"]["send_email_address"] ?>" required/>
                             <label for="send_email_address"><?php echo $language["EMAIL_ADDRESS"]; ?></label>
                         </div>
                     </div>
@@ -740,7 +764,8 @@ Start Main Content
                             <input type="hidden" id="cron_id" name="cron_id" value="<?php echo $cronId ?>">
                             <input type="hidden" id="cron_state" name="cron_state" value="<?php echo $cronState ?>">
                             <input type="hidden" id="form_id" name="form_id" value="cron">
-                            <button type="submit" class="button" id="igd2d" value="submit"><?php echo $language["SAVE_CRON"]; ?></button>
+                            <button type="submit" class="button" id="igd2d"
+                                    value="submit"><?php echo $language["SAVE_CRON"]; ?></button>
                         </div>
                     </div>
                 </div>
@@ -753,13 +778,13 @@ Start Main Content
     /**
      * JS to filter user, domain, and sub-domain select elements.
      */
-    $('#directadmin_domain option').each(function() {
+    $('#directadmin_domain option').each(function () {
         if (!this.selected) {
             $(this).prop('disabled', true);
         }
     });
 
-    $('#directadmin_subdomain option').each(function() {
+    $('#directadmin_subdomain option').each(function () {
         if (!this.selected) {
             $(this).prop('disabled', true);
         }
