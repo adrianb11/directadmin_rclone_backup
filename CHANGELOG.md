@@ -7,6 +7,7 @@
 **Implemented enhancements:**
 
 - Fix cron create page not loading.
+- Code cleanup.
 
 ## [v1.0.3](https://github.com/adrianb11/directadmin_rclone_backup/tree/v1.0.3) (2022-01-17)
 
