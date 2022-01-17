@@ -113,7 +113,8 @@ Create settings form
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="form-floating">
-                            <input placeholder="*" class="form-control" id="filehost_root_path" name="filehost_root_path"
+                            <input placeholder="*" class="form-control" id="filehost_root_path"
+                                   name="filehost_root_path"
                                    value="<?php echo $directadminarray["FILEHOST"]["filehost_root_path"] ?>"/>
                             <label for="filehost_root_path"><?php echo $language["FILEHOST_ROOT_PATH"]; ?></label>
                         </div>
@@ -168,7 +169,8 @@ Create settings form
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="form-floating">
-                            <input placeholder="*" class="form-control" id="send_email_address" name="send_email_address"
+                            <input placeholder="*" class="form-control" id="send_email_address"
+                                   name="send_email_address"
                                    value="<?php echo $directadminarray["EMAIL"]["send_email_address"] ?>"/>
                             <label for="send_email_address"><?php echo $language["DEFAULT_SEND_EMAIL"]; ?></label>
                         </div>
@@ -250,7 +252,8 @@ Create settings form
                     <div class="col">
                         <div class="form-floating">
                             <input type="hidden" id="form_id" name="form_id" value="options">
-                            <button type="submit" class="button" value="submit"><?php echo $language["SAVE_OPTIONS"]; ?></button>
+                            <button type="submit" class="button"
+                                    value="submit"><?php echo $language["SAVE_OPTIONS"]; ?></button>
                         </div>
                     </div>
                 </div>

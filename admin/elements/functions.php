@@ -7,8 +7,7 @@
  */
 function ReadINI($file)
 {
-    $array = parse_ini_file($file, true);
-    return $array;
+    return parse_ini_file($file, true);
 }
 
 
@@ -48,8 +47,7 @@ function WriteINI($data, $filepath)
  */
 function GetDirContents($dir)
 {
-    $fileArray = array_diff(scandir($dir), array('.', '..'));
-    return $fileArray;
+    return array_diff(scandir($dir), array('.', '..'));
 }
 
 
@@ -58,7 +56,7 @@ function GetDirContents($dir)
  * @param $config_data
  * @param $exclude
  * @param $post
- * @return mixed
+ * @return array
  */
 function WriteConfigData($config_data, $exclude, $post)
 {
@@ -83,67 +81,15 @@ function WriteConfigData($config_data, $exclude, $post)
  * Function to communicate with DirectAdmin API without username and password.
  * Uses session data so user must be logged in.
  * @param $cmd
- * @return bool
- *
- * Created by Terrorhawk -> https://github.com/Terrorhawk/Capri
+ * @return bool|string
  */
 function getApi($cmd)
 {
-    if (isset($_SERVER["SERVER_PORT"])) {
-        $_SERVER_PORT = $_SERVER["SERVER_PORT"];
-    } else {
-        $_SERVER_PORT = $_ENV["SERVER_PORT"];
-    }
+    $ch = curl_init($_SERVER["SERVER_ADDR"] . ":" . $_SERVER["SERVER_PORT"] . $cmd);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_COOKIE, "session=" . $_SERVER["SESSION_ID"] . "; key=" . $_SERVER["SESSION_KEY"]);
 
-    if (isset($_SERVER["SESSION_KEY"])) {
-        $_SESSION_KEY = $_SERVER["SESSION_KEY"];
-    } else {
-        $_SESSION_KEY = $_ENV["SESSION_KEY"];
-    }
-
-    if (isset($_SERVER["SESSION_ID"])) {
-        $_SESSION_ID = $_SERVER["SESSION_ID"];
-    } else {
-        $_SESSION_ID = $_ENV["SESSION_ID"];
-    }
-
-    $headers = array();
-    $headers["Host"] = "127.0.0.1:" . $_SERVER_PORT;
-    $headers["Cookie"] = "session=" . $_SESSION_ID . "; key=" . $_SESSION_KEY;
-
-    $send = "GET " . $cmd . " HTTP/1.1\r\n";
-    foreach ($headers as $var => $value) $send .= $var . ": " . $value . "\r\n";
-    $send .= "\r\n";
-
-    $sIP = "127.0.0.1";
-
-    // connect
-    $res = @fsockopen($sIP, $_SERVER_PORT, $sock_errno, $sock_errstr, 5);
-    if ($sock_errno || $sock_errstr) {
-        return false;
-    }
-    if ($res) {
-        // send query
-        @fputs($res, $send, strlen($send));
-        // get reply
-        $result = '';
-        while (!feof($res)) {
-            $result .= fgets($res, 32768);
-        }
-
-        @fclose($res);
-
-        // remove header
-        $data = explode("\r\n\r\n", $result, 2);
-
-        if (count($data) == 2) {
-            return $data[1];
-        } else {
-            return false;
-        }
-    } else {
-        return false;
-    }
+    return curl_exec($ch);
 }
 
 /**

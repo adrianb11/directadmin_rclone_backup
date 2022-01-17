@@ -29,8 +29,7 @@ if ($output['cron_state'] != "new") {
  */
 if ($output['cron_state'] != "new") {
     $output["cron_edited"] = $output['cron_id'];
-}
-elseif ($output['cron_state'] == "new") {
+} elseif ($output['cron_state'] == "new") {
     $output["cron_new"] = $output['cron_id'];
 }
 

@@ -18,7 +18,13 @@ if ($directadminarray["INSTALLED"]["rclone_installed"] != 1) { ?>
 if (isset($output['software']) || isset($output['run_script'])) { ?>
     <br>
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong><pre><?php if (isset($output['software'])) { echo $output['software']; } else { echo $output['run_script']; }?></pre></strong>
+        <strong>
+            <pre><?php if (isset($output['software'])) {
+                    echo $output['software'];
+                } else {
+                    echo $output['run_script'];
+                } ?></pre>
+        </strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 <?php }
@@ -28,9 +34,13 @@ if (isset($output['options_saved']) || isset($output['cron_edited']) || isset($o
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>
             <pre>
-                <?php if (isset($output['options_saved'])) { echo $language["DEFAULT_OPTIONS_SAVED"]; }
-                elseif (isset($output['cron_edited'])) { echo $language["CRON_EDITED"]; }
-                elseif (isset($output['cron_new'])) { echo $language["NEW_CRON_CREATED"]; }?>
+                <?php if (isset($output['options_saved'])) {
+                    echo $language["DEFAULT_OPTIONS_SAVED"];
+                } elseif (isset($output['cron_edited'])) {
+                    echo $language["CRON_EDITED"];
+                } elseif (isset($output['cron_new'])) {
+                    echo $language["NEW_CRON_CREATED"];
+                } ?>
             </pre>
         </strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
