@@ -1,6 +1,8 @@
 #!/bin/sh
 
 echo "Changing permissions and ownership of files"
+cd $ROOT_DIR
+
 chmod 755 admin/*
 chown diradmin:diradmin admin/*
 
