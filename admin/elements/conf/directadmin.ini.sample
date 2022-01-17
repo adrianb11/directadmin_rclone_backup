@@ -1,0 +1,29 @@
+[SETTINGS]
+developmentmode = false
+
+[LANGUAGE]
+language = English
+
+[RCLONE]
+remotes =
+structure = UDSymd
+
+[FILEHOST]
+filehost_root_path =
+
+[DIRECTADMIN_WWW]
+directadmin_backup_tmp =
+
+[COMPRESSION]
+compression = gzip
+
+[EMAIL]
+send_email_enabled = false
+send_email_address =
+
+[INSTALLED]
+rclone_installed = false
+zip_installed = false
+mysql_installed = false
+postgresql_installed = false
+mongodb_installed = false

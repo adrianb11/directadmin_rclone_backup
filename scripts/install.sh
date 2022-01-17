@@ -5,6 +5,9 @@ ROOT_DIR="/usr/local/directadmin/plugins/rclone_backup"
 echo "Changing permissions and ownership of files"
 cd $ROOT_DIR
 
+echo "Create ini file"
+mv $ROOT_DIR/admin/elements/conf/directadmin.ini.sample $ROOT_DIR/admin/elements/conf/directadmin.ini
+
 chmod 755 admin/*
 chown diradmin:diradmin admin/*
 
