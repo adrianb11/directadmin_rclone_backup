@@ -131,7 +131,6 @@ request, [please create a new issue](https://github.com/adrianb11/directadmin_rc
 ### Acknowledgments
 
 - [Thomas Ba - Cron Expression Generator](https://github.com/thomasba/cron-expression-generator)
-- [Terrorhawk - DirectAdmin API Communication](https://github.com/Terrorhawk/Capri)
 
 ### License
 
