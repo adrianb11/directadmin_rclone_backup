@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.0.5](https://github.com/adrianb11/directadmin_rclone_backup/tree/v1.0.5) (2022-01-18)
+
+[Full Changelog](https://github.com/adrianb11/directadmin_rclone_backup/compare/v1.0.4...v1.0.5)
+
+**Implemented enhancements:**
+
+- Fix conf folders not being created.
+
 ## [v1.0.4](https://github.com/adrianb11/directadmin_rclone_backup/tree/v1.0.4) (2022-01-17)
 
 [Full Changelog](https://github.com/adrianb11/directadmin_rclone_backup/compare/v1.0.3...v1.0.4)
