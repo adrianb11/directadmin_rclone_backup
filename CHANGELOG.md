@@ -1,12 +1,14 @@
 # Changelog
 
-## [v1.0.6](https://github.com/adrianb11/directadmin_rclone_backup/tree/v1.0.6) (2022-01-18)
+## [v1.0.6](https://github.com/adrianb11/directadmin_rclone_backup/tree/v1.0.6) (2022-01-22)
 
 [Full Changelog](https://github.com/adrianb11/directadmin_rclone_backup/compare/v1.0.5...v1.0.6)
 
 **Implemented enhancements:**
 
 - Amended README
+- Fix for error on install.
+- Directadmin.ini no longer overwritten on install/update.
 
 ## [v1.0.5](https://github.com/adrianb11/directadmin_rclone_backup/tree/v1.0.5) (2022-01-18)
 

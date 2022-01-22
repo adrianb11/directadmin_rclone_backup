@@ -3,7 +3,7 @@ CRON_FILE="/var/spool/cron/root"
 ROOT_DIR="/usr/local/directadmin/plugins/rclone_backup"
 
 echo "Create ini file"
-mv $ROOT_DIR/admin/elements/conf/directadmin.ini.sample $ROOT_DIR/admin/elements/conf/directadmin.ini
+[ -e $ROOT_DIR/admin/elements/conf/directadmin.ini ] && echo "Config found" || mv $ROOT_DIR/admin/elements/conf/directadmin.ini.sample $ROOT_DIR/admin/elements/conf/directadmin.ini
 
 cd $ROOT_DIR
 
