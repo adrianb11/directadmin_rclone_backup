@@ -26,6 +26,10 @@ $config_data = ReadINI($input_config_file);
  */
 $domainJSON = getApi("/CMD_API_DOMAIN?action=document_root");
 $domainRESULT = json_decode($domainJSON, true);
+if (json_last_error() != 0) {
+    // JSON is not valid
+    $domainRESULT = array();
+}
 
 foreach ($domainRESULT["users"] as $userKEY => $userVALUE) {
     if ($config_data["DIRECTADMIN_WWW"]["directadmin_user"] == $userKEY) {
