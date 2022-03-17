@@ -101,7 +101,7 @@ function getApi($cmd)
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_COOKIE, "session=" . $_SERVER["SESSION_ID"] . "; key=" . $_SERVER["SESSION_KEY"]);
 
-        if ($directadminarray["SETTINGS"]["ignore_certificate"] == true) {
+        if ($directadminarray["SETTINGS"]["ignore_certificate"] === "true") {
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         }
 
@@ -117,10 +117,7 @@ function getApi($cmd)
 
         if ($e->getCode() == "60")
         {
-            trigger_error(sprintf(
-                'Curl failed with error #%d: %s',
-                $e->getCode(), "Please enable ignore peer certificates in plugin options"),
-                E_USER_ERROR);
+            echo "Fatal error: Curl failed with error #60: Please enable ignore peer certificates in plugin options";
         }
         trigger_error(sprintf(
             'Curl failed with error #%d: %s',
