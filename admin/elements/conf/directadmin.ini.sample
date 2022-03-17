@@ -17,7 +17,7 @@ filehost_root_path =
 directadmin_backup_tmp =
 
 [COMPRESSION]
-compression = gzip
+compression = tgz
 
 [EMAIL]
 send_email_enabled = false
