@@ -16,15 +16,15 @@ then
   if [ -z "$iniVersion" ]
   then
     echo "ini version is blank"
-    iniVersion=1.0.6
+    iniVersion="1.0.6"
   fi
 
   # Run update for version 1.0.6
-  if [ $iniVersion -eq 1.0.6 ]; then
+  if [ $iniVersion -eq "1.0.6" ]; then
     echo "updating ini file"
     #update
-    sed '/^\[SETTINGS\]/a\ignore_certificate = false' $DIRECTADMIN_INI
-    sed '/^\[SETTINGS\]/a\version = 1.0.7' $DIRECTADMIN_INI
+    sed -i '/^\[SETTINGS\]/a\ignore_certificate = false' $DIRECTADMIN_INI
+    sed -i '/^\[SETTINGS\]/a\version = 1.0.7' $DIRECTADMIN_INI
     iniVersion=1.0.7
     echo "Updated ini to version 1.0.7"
   fi
