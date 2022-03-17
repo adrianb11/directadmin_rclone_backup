@@ -1,10 +1,10 @@
 #!/bin/sh
 
-chmod +x update_ini.sh
-. update_ini.sh
-
 ROOT_DIR="/usr/local/directadmin/plugins/rclone_backup"
 cd $ROOT_DIR
+
+chmod +x update_ini.sh
+. update_ini.sh
 
 echo "Creating required folders"
 mkdir -p admin/elements/conf/pending
