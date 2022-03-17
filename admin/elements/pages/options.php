@@ -260,7 +260,7 @@ Create settings form
                                 } ?> >
                                     <?php echo $language["TRUE"]; ?>
                                 </option>
-                                <option value="false" <?php if ($directadminarray["COMPRESSION"]["ignore_certificate"] == "false") {
+                                <option value="false" <?php if ($directadminarray["SETTINGS"]["ignore_certificate"] == "false") {
                                     echo 'selected="selected"';
                                 } ?> >
                                     <?php echo $language["FALSE"]; ?>

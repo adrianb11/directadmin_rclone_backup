@@ -1,7 +1,7 @@
 <?php
 $input_config_file = "/usr/local/directadmin/plugins/rclone_backup/admin/elements/conf/directadmin.ini";
 $input_default_cron_file = "/usr/local/directadmin/plugins/rclone_backup/admin/elements/conf/DEFAULT.ini";
-$exclude = array('SETTINGS', 'INSTALLED');
+$exclude = array('INSTALLED');
 
 
 /**
