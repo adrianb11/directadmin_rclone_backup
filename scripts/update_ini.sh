@@ -9,7 +9,7 @@ echo "Update ini file"
 if [ -f "$DIRECTADMIN_INI" ];
 then
   echo "File exists"
-  iniVersion=$(awk -F "=" '/version/ {print $2}' $ROOT_DIR/admin/elements/conf/directadmin.ini | tr -d ' ')
+  iniVersion=$(awk -F "=" '/version/ {print $2}' $DIRECTADMIN_INI | tr -d ' ')
   echo "$iniVersion"
 
   # Check if $iniVersion has been set.  Else version is less than 1.0.7
@@ -20,7 +20,7 @@ then
   fi
 
   # Run update for version 1.0.6
-  if [ $iniVersion -eq "1.0.6" ]; then
+  if [ $iniVersion = "1.0.6" ]; then
     echo "updating ini file"
     #update
     sed -i '/^\[SETTINGS\]/a\ignore_certificate = false' $DIRECTADMIN_INI
