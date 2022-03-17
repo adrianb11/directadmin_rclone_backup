@@ -255,12 +255,12 @@ Create settings form
                     <div class="col-sm-8">
                         <div class="form-floating">
                             <select class="form-select" id="ignore_certificate" name="ignore_certificate">
-                                <option value="true" <?php if ($directadminarray["SETTINGS"]["ignore_certificate"] == "true") {
+                                <option value="1" <?php if ($directadminarray["SETTINGS"]["ignore_certificate"] == 1) {
                                     echo 'selected="selected"';
                                 } ?> >
                                     <?php echo $language["TRUE"]; ?>
                                 </option>
-                                <option value="false" <?php if ($directadminarray["SETTINGS"]["ignore_certificate"] == "false") {
+                                <option value="0" <?php if ($directadminarray["SETTINGS"]["ignore_certificate"] == 0) {
                                     echo 'selected="selected"';
                                 } ?> >
                                     <?php echo $language["FALSE"]; ?>

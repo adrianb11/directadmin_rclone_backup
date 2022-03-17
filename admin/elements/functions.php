@@ -101,7 +101,7 @@ function getApi($cmd)
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_COOKIE, "session=" . $_SERVER["SESSION_ID"] . "; key=" . $_SERVER["SESSION_KEY"]);
 
-        if ($directadminarray["SETTINGS"]["ignore_certificate"] === "true") {
+        if ($directadminarray["SETTINGS"]["ignore_certificate"] === "1") {
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         }
 

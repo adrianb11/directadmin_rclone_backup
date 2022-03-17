@@ -1,7 +1,7 @@
 [SETTINGS]
 developmentmode = false
 version = 1.0.7
-ignore_certificate = false
+ignore_certificate = 0
 
 [LANGUAGE]
 language = English
