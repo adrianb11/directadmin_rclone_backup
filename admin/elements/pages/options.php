@@ -244,6 +244,43 @@ Create settings form
         <hr>
 
         <! --
+        Ignore Peer's Certificate
+        -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <?php echo $language["IGNORE_CERTIFICATE"]; ?>
+                </h5>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="form-floating">
+                            <select class="form-select" id="ignore_certificate" name="ignore_certificate">
+                                <option value="1" <?php if ($directadminarray["SETTINGS"]["ignore_certificate"] == 1) {
+                                    echo 'selected="selected"';
+                                } ?> >
+                                    <?php echo $language["TRUE"]; ?>
+                                </option>
+                                <option value="0" <?php if ($directadminarray["SETTINGS"]["ignore_certificate"] == 0) {
+                                    echo 'selected="selected"';
+                                } ?> >
+                                    <?php echo $language["FALSE"]; ?>
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <span><?php echo $language["IGNORE_CERTIFICATE_DESC"]; ?></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <! --
         Form submit
         -->
         <div class="card">

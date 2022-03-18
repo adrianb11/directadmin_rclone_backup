@@ -81,15 +81,55 @@ function WriteConfigData($config_data, $exclude, $post)
  * Function to communicate with DirectAdmin API without username and password.
  * Uses session data so user must be logged in.
  * @param $cmd
- * @return bool|string
+ * @return string
  */
 function getApi($cmd)
 {
-    $ch = curl_init($_SERVER["SERVER_ADDR"] . ":" . $_SERVER["SERVER_PORT"] . $cmd);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_COOKIE, "session=" . $_SERVER["SESSION_ID"] . "; key=" . $_SERVER["SESSION_KEY"]);
+    $directadminarray = ReadINI("/usr/local/directadmin/plugins/rclone_backup/admin/elements/conf/directadmin.ini");
 
-    return curl_exec($ch);
+    $addr = "";
+
+    if ($_SERVER["SSL"] === "1")
+    {
+        $addr .= "https://";
+    }
+
+    $addr .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . $cmd;
+
+    try {
+        $ch = curl_init($addr);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_COOKIE, "session=" . $_SERVER["SESSION_ID"] . "; key=" . $_SERVER["SESSION_KEY"]);
+
+        if ($directadminarray["SETTINGS"]["ignore_certificate"] === "1") {
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        }
+
+        $content = curl_exec($ch);
+
+        // Check the return value of curl_exec()
+        if ($content === false) {
+            throw new Exception(curl_error($ch), curl_errno($ch));
+        }
+
+        return curl_exec($ch);
+    } catch(Exception $e) {
+
+        if ($e->getCode() == "60")
+        {
+            echo "Fatal error: Curl failed with error #60: Please enable ignore peer certificates in plugin options";
+        } else {
+            trigger_error(sprintf(
+                'Curl failed with error #%d: %s',
+                $e->getCode(), $e->getMessage()),
+                E_USER_ERROR);
+        }
+    } finally {
+        // Close curl handle unless it failed to initialize
+        if (is_resource($ch)) {
+            curl_close($ch);
+        }
+    }
 }
 
 /**

@@ -54,6 +54,8 @@ $language = array(
     "pending" => "Pending",
     "NOT_INSTALLED" => "NOT INSTALLED",
     "INSTALLED" => "INSTALLED",
+    "TRUE" => "True",
+    "FALSE" => "False",
 
     //Page Titles
     "OVERVIEW_PAGE_TITLE" => "Cron Overview",
@@ -82,6 +84,7 @@ $language = array(
     "DIRECTADMIN_EXCLUDE_PATH_DESC" => "If required, please enter the full path to a directory you wish to exclude from the backup (not required).",
     "DIRECTADMIN_DATABASE_DESC" => "Please select a database to backup (not required).",
     "DIRECTADMIN_TYPE_DESC" => "Please select the database type (not required).",
+    "IGNORE_CERTIFICATE_DESC" => "Set to TRUE if root certificate cannot be verified.",
 
 
     //Operations
@@ -144,5 +147,8 @@ $language = array(
     "DEFAULT_COMPRESSION" => "Default Compression",
     "COMPRESSION" => "Compression",
 
-    "FILEHOST" => "File Host"
+    "FILEHOST" => "File Host",
+
+    //SSL
+    "IGNORE_CERTIFICATE" => "Ignore Peer Certificate"
 );

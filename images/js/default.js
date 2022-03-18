@@ -24,17 +24,18 @@ let cron_output_id_months = "#cron_output_months";
 let cron_output_id_dow = "#cron_output_dow";
 
 /**Convert a list of values to cron-syntax
- * @param bool zeroAllowed  weather the number zero is allowed (true) or not
- *                          (false)
- * @param  int              max the maximum value (eg. 59 for minutes)
- * @param  int[]            values a list of selected values
  * @return string
+ * @param zeroAllowed   whether the number zero is allowed (true) or not (false)
+ * @param max           the maximum value (eg. 59 for minutes)
+ * @param values        a list of selected values
  */
 function cronCalculate(zeroAllowed, max, values) {
-    if (zeroAllowed == false)
+    if (zeroAllowed === false) {
         values.push(0);
-    if (values.length > max || values.length == 0)
+    }
+    if (values.length > max || values.length === 0) {
         return "*";
+    }
     values.sort(function (a, b) {
         return a - b
     });
@@ -42,61 +43,68 @@ function cronCalculate(zeroAllowed, max, values) {
         for (let d = 2; d <= Math.ceil(max / 2); d++) {
             let tmp = values.slice();
             for (x = 0; x * d <= max; x++) {
-                if (tmp.indexOf(x * d) == -1)
+                if (tmp.indexOf(x * d) === -1) {
                     continue out;
-                else
+                }
+                else {
                     tmp.splice(tmp.indexOf(x * d), 1);
+                }
             }
-            if (tmp.length == 0)
+            if (tmp.length === 0) {
                 return "*/" + d;
+            }
         }
     // if not allowed, remove 0
-    if (zeroAllowed == false)
+    if (zeroAllowed === false) {
         values.splice(values.indexOf(0), 1);
+    }
     // ranges ("2,8,20,25-35")
-    output = values[0] + "";
+    let output = values[0] + "";
     let range = false;
     for (let i = 1; i < values.length; i++) {
-        if (values[i - 1] + 1 == values[i]) {
+        if (values[i - 1] + 1 === values[i]) {
             range = true;
         } else {
-            if (range)
+            if (range) {
                 output = output + "-" + values[i - 1];
+            }
             range = false;
             output = output + "," + values[i];
         }
     }
-    if (range)
+    if (range) {
         output = output + "-" + values[values.length - 1];
+    }
     return output;
 }
 
 /** Convert a cron-expression (one item) to a list of values
- * @param bool zeroAllowed  weather the number zero is allowed (true) or not
- *                          (false)
- * @param  int              max the maximum value (eg. 59 for minutes)
- * @param  string           the cron expression (eg. "*")
  * @return int[]
+ * @param allowZero     whether the number zero is allowed (true) or not (false)
+ * @param maxValue      the maximum value (eg. 59 for minutes)
+ * @param value         the cron expression (eg. "*")
  */
 function cronValueItemToList(allowZero, maxValue, value) {
     let list = [];
-    if (value == "*") {
+    if (value === "*") {
         for (let i = allowZero ? 0 : 1; i <= maxValue; i++) {
             list.push(i);
         }
     } else if (value.match(/^\*\/[1-9][0-9]?$/)) {
         let c = parseInt(value.match(/^\*\/([1-9][0-9]?)$/)[1]);
         for (let i = allowZero ? 0 : 1; i <= maxValue; i++) {
-            if (i % c == 0)
+            if (i % c === 0) {
                 list.push(i);
+            }
         }
     } else if (value.match(/^([0-9]+|[0-9]+-[0-9]+)(,[0-9]+|,[0-9]+-[0-9]+)*$/)) {
         let a = value.split(",");
         for (let i = 0; i < a.length; i++) {
             let e = a[i].split("-");
-            if (e.length == 2) {
-                for (let j = parseInt(e[0]); j <= parseInt(e[1]); j++)
+            if (e.length === 2) {
+                for (let j = parseInt(e[0]); j <= parseInt(e[1]); j++) {
                     list.push(j);
+                }
             } else {
                 list.push(parseInt(e[0]));
             }
@@ -118,26 +126,27 @@ function importCronExpressionFromInput(source) {
  * @param expression The string
  */
 function importCronExpression(expression) {
-    if (!expression.match(/^((\*(\/[1-9][0-9]?)?|([0-9]{1,2}(-[0-9]{1,2})?)(,[0-9]{1,2}(-[0-9]{1,2})?)*)( |$)){5}$/))
+    if (!expression.match(/^((\*(\/[1-9][0-9]?)?|([0-9]{1,2}(-[0-9]{1,2})?)(,[0-9]{1,2}(-[0-9]{1,2})?)*)( |$)){5}$/)) {
         return;
+    }
     let parts = expression.split(" ");
-    if (parts[0] != cron_minutes) {
+    if (parts[0] !== cron_minutes) {
         cron_minutes = parts[0];
         cronHelperSelectList(cron_minutes_id, cronValueItemToList(true, 59, parts[0]));
     }
-    if (parts[1] != cron_hours) {
+    if (parts[1] !== cron_hours) {
         cron_hours = parts[1];
         cronHelperSelectList(cron_hours_id, cronValueItemToList(true, 23, parts[1]));
     }
-    if (parts[2] != cron_dom) {
+    if (parts[2] !== cron_dom) {
         cron_dom = parts[2];
         cronHelperSelectList(cron_dom_id, cronValueItemToList(false, 31, parts[2]));
     }
-    if (parts[3] != cron_months) {
+    if (parts[3] !== cron_months) {
         cron_months = parts[3];
         cronHelperSelectList(cron_months_id, cronValueItemToList(false, 12, parts[3]));
     }
-    if (parts[4] != cron_dow) {
+    if (parts[4] !== cron_dow) {
         cron_dow = parts[4];
         cronHelperSelectList(cron_dow_id, cronValueItemToList(true, 6, parts[4]));
     }
@@ -157,18 +166,19 @@ function getCronExpression() {
  */
 function getSelectedElements(id) {
     return $.map($(id + ' > option:selected'), function (element) {
-        if (parseInt(element.value) != "NaN")
+        if (parseInt(element.value) !== "NaN") {
             return parseInt(element.value);
+        } else {
+            return 0;
+        }
     });
 }
 
 /** Update the variables
- * @param source Source identifier
  * @param type hours/minutes/dom/months/dow
  * @return nothing
  */
 function updateField(type) {
-    zeroAllowed = true;
     switch (type) {
         case "hours":
             cron_hours = cronCalculate(true, 23, getSelectedElements(cron_hours_id));
