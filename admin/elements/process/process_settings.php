@@ -16,7 +16,7 @@ if (isset($_SERVER['QUERY_STRING']) && isset($output['run_script'])) {
  */
 if (isset($_SERVER['QUERY_STRING']) && isset($output['run_script'])) {
     if ($output['run_script'] === 'manage') {
-        $output['run_script'] = shell_exec('sh /usr/local/directadmin/plugins/rclone_backup/admin/elements/scripts/manage_cron.sh -r');
+        //$output['run_script'] = shell_exec('sh /usr/local/directadmin/plugins/rclone_backup/admin/elements/scripts/manage_cron.sh -r');
     }
 }
 

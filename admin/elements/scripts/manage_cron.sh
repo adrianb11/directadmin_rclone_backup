@@ -16,7 +16,7 @@ SCRIPT_DIR="${ROOT_DIR}/admin/elements/scripts"
 # crontab file. Should be adjusted.
 # e.g /var/spool/cron/crontabs/<root>.
 # Requires root privileges.
-CRON_FILE="/var/spool/cron/root"
+# CRON_FILE="/var/spool/cron/root"
  # Script which is executed in the crontab.
 CRON_CMD="backup_job.sh"
 
@@ -146,10 +146,11 @@ function parse_main_info() {
 # @param $1: Pass the path + filename of the config
 function delete_cron_entry() {
   if [ -z "$1" ]; then
+    log "No file supplied"
     return 1
   fi
   if [ "$DRY_RUN" -eq 0 ]; then
-    ( crontab -l | grep -v -F "$file" ) | crontab -
+    ( crontab -l | grep -v -F "$(basename "$file")" ) | crontab -
     log "Deleted crontab entry."
   else
     log " DRY" "Deleted crontab entry."

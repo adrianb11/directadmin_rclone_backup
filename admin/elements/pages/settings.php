@@ -11,7 +11,9 @@ Settings
             <h5 class="card-title">
                 <?php echo $language["RUN_SCRIPTS"]; ?>
             </h5>
-
+            <?php
+            /**
+            ?>
             <! --
             Run Manage Cron Script
             -->
@@ -33,7 +35,8 @@ Settings
         </div>
     </div>
     <hr>
-
+             * */
+?>
     <! --
     ReCheck Installed Software
     -->
