@@ -758,6 +758,17 @@ Start Main Content
         <hr>
 
         <! --
+        Hidden Inputs
+        -->
+        <input name="developmentmode"
+               id="developmentmode"
+               type="hidden"
+               value="<?php echo $config_data["SETTINGS"]["developmentmode"] ?>" />
+        <input name="version"
+               id="version"
+               type="hidden"
+               value="<?php echo $config_data["SETTINGS"]["version"] ?>" />
+        <! --
         Submit Form
         -->
         <div class="card">

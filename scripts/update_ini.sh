@@ -10,7 +10,7 @@ if [ -f "$DIRECTADMIN_INI" ];
 then
   echo "File exists"
   iniVersion=$(awk -F "=" '/version/ {print $2}' $DIRECTADMIN_INI | tr -d ' ')
-  echo "$iniVersion"
+  echo "Current version is $iniVersion"
 
   # Check if $iniVersion has been set.  Else version is less than 1.0.7
   if [ -z "$iniVersion" ]

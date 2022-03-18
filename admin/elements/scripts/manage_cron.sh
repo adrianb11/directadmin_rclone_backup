@@ -149,8 +149,8 @@ function delete_cron_entry() {
     return 1
   fi
   if [ "$DRY_RUN" -eq 0 ]; then
-    tmp=$(mktemp)
-    grep -v "$(basename "$file")" "$CRON_FILE" > "$tmp" && mv "$tmp" "$CRON_FILE"
+    ( crontab -l | grep -v -F "$file" ) | crontab -
+    log "Deleted crontab entry."
   else
     log " DRY" "Deleted crontab entry."
   fi
@@ -186,16 +186,17 @@ function activate_cron() {
   if [ -z "$1" ]; then
     return 1
   fi
-  exist=$(grep -c "$(basename "$file")" "$CRON_FILE" || true)
-  if [ "$exist" -gt 0 ]; then
-    log "INFO" "Existing entry found, delete it."
-    delete_cron_entry "$file"
-  fi
+
+  log "INFO" "Search for existing cron and delete it."
+  delete_cron_entry "$file"
+
   # Read the CRON section from ini file
   parse_ini "$file" "CRON"
   if [ "$DRY_RUN" -eq 0 ]; then
     log "INFO" "Added cronjob to crontab."
-    echo "$CONF__CRON__cron_output_minutes $CONF__CRON__cron_output_hours $CONF__CRON__cron_output_dom $CONF__CRON__cron_output_months $CONF__CRON__cron_output_dow /bin/sh $SCRIPT_DIR/$CRON_CMD $CONF_DIR/active/$(basename $file) # cron_id $CONF__CRON__cron_id" >> "$CRON_FILE"
+    COMMAND="/bin/sh $SCRIPT_DIR/$CRON_CMD $CONF_DIR/active/$(basename $file) # cron_id $CONF__CRON__cron_id"
+    JOB="$CONF__CRON__cron_output_minutes $CONF__CRON__cron_output_hours $CONF__CRON__cron_output_dom $CONF__CRON__cron_output_months $CONF__CRON__cron_output_dow $COMMAND"
+    ( crontab -l | grep -v -F "$COMMAND" || : ; echo "$JOB" ) | crontab -
   else
     log "INFO" "Added cronjob to crontab."
   fi
@@ -217,11 +218,10 @@ function deactivate_cron() {
   if [ -z "$1" ]; then
     return 1
   fi
-  exist=$(grep -c "$(basename "$file")" "$CRON_FILE" || true)
-  if [ "$exist" -gt 0 ]; then
-    log "INFO" "Existing entry found, delete it."
-    delete_cron_entry "$file"
-  fi
+
+  log "INFO" "Search for existing cron and delete it."
+  delete_cron_entry "$file"
+
   log "INFO" "Moving file $file to $CONF_DIR/inactive."
   if [ "$DRY_RUN" -eq 0 ]; then
     mv "$file" "$CONF_DIR/inactive/$(basename "$file")"
@@ -238,11 +238,10 @@ function delete_cron() {
   if [ -z "$1" ]; then
     return 1
   fi
-  exist=$(grep -c "$(basename "$file")" "$CRON_FILE" || true)
-  if [ "$exist" -gt 0 ]; then
-    log "INFO" "Existing entry found, delete it."
-    delete_cron_entry "$file"
-  fi
+
+  log "INFO" "Search for existing cron and delete it."
+  delete_cron_entry "$file"
+
   if [ "$DRY_RUN" -eq 0 ]; then
     rm "${file:?}"
   else
