@@ -118,11 +118,12 @@ function getApi($cmd)
         if ($e->getCode() == "60")
         {
             echo "Fatal error: Curl failed with error #60: Please enable ignore peer certificates in plugin options";
+        } else {
+            trigger_error(sprintf(
+                'Curl failed with error #%d: %s',
+                $e->getCode(), $e->getMessage()),
+                E_USER_ERROR);
         }
-        trigger_error(sprintf(
-            'Curl failed with error #%d: %s',
-            $e->getCode(), $e->getMessage()),
-        E_USER_ERROR);
     } finally {
         // Close curl handle unless it failed to initialize
         if (is_resource($ch)) {

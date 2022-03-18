@@ -27,7 +27,28 @@ then
     sed -i '/^\[SETTINGS\]/a\version = 1.0.7' $DIRECTADMIN_INI
     iniVersion=1.0.7
     echo "Updated ini to version 1.0.7"
+
+    #Fix crontabs
+    CRON_FILE="/var/spool/cron/root"
+
+    tmp=$(mktemp)
+    grep -v "$(basename "manage_cron.sh")" "$CRON_FILE" > "$tmp" && mv "$tmp" "$CRON_FILE"
+
+    #Reset crons
+    mv $ROOT_DIR/admin/elements/conf/active/* $ROOT_DIR/admin/elements/conf/pending/
+    mv $ROOT_DIR/admin/elements/conf/inactive/* $ROOT_DIR/admin/elements/conf/pending/
+
+    for file in "$CONF_DIR"/pending/*.ini; do
+      if [ -f "$file" ]; then
+        tmp=$(mktemp)
+        grep -v "$(basename "$file")" "$CRON_FILE" > "$tmp" && mv "$tmp" "$CRON_FILE"
+      fi
+    done
+
+    ./$ROOT_DIR/admin/elements/scripts/manage_cron.sh -r
   fi
+
+
 
   # Run next update.
 fi

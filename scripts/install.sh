@@ -6,8 +6,7 @@ echo ""
 echo "Create ini file"
 [ -e $ROOT_DIR/admin/elements/conf/directadmin.ini ] && echo "Config found" || mv $ROOT_DIR/admin/elements/conf/directadmin.ini.sample $ROOT_DIR/admin/elements/conf/directadmin.ini
 
-chmod 755 /usr/local/directadmin/plugins/rclone_backup/scripts/update_ini.sh
-. /usr/local/directadmin/plugins/rclone_backup/scripts/update_ini.sh
+. /usr/local/directadmin/plugins/rclone_backup/admin/elements/scripts/update_ini.sh
 
 cd $ROOT_DIR
 
