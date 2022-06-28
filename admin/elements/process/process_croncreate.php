@@ -7,7 +7,11 @@ $exclude = array('REFERENCE');
  */
 $config_data = ReadINI($input_config_file);
 
-$output_config_file = "/usr/local/directadmin/plugins/rclone_backup/admin/elements/conf/pending/" . $output['cron_id'] . ".ini";
+if (isset($output['delete'])) {
+    $output_config_file = "/usr/local/directadmin/plugins/rclone_backup/admin/elements/conf/remove/" . $output['cron_id'] . ".ini";
+} else {
+    $output_config_file = "/usr/local/directadmin/plugins/rclone_backup/admin/elements/conf/pending/" . $output['cron_id'] . ".ini";
+}
 
 
 /**

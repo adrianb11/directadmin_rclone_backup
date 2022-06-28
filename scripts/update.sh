@@ -9,6 +9,7 @@ echo "Creating required folders"
 mkdir -p admin/elements/conf/pending
 mkdir -p admin/elements/conf/active
 mkdir -p admin/elements/conf/inactive
+mkdir -p admin/elements/conf/remove
 
 echo "Changing permissions and ownership of files"
 chmod -R 755 admin/*

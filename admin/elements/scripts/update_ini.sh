@@ -48,7 +48,16 @@ then
     ./$ROOT_DIR/admin/elements/scripts/manage_cron.sh -r
   fi
 
-
+    # Run update for version 1.0.7
+    if [ $iniVersion = "1.0.7" ]; then
+      echo "updating ini file"
+      #update
+      sed -i '/^\[SETTINGS\]/a\my_conf_login =' $DIRECTADMIN_INI
+      sed -i '/^\[SETTINGS\]/a\my_conf_enabled = 0' $DIRECTADMIN_INI
+      sed -i 's/1.0.7/1.0.8/g' $DIRECTADMIN_INI
+      iniVersion=1.0.8
+      echo "Updated ini to version 1.0.8"
+    fi
 
   # Run next update.
 fi

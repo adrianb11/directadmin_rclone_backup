@@ -2,6 +2,8 @@
 developmentmode = false
 version = 1.0.7
 ignore_certificate = 0
+my_conf_login =
+my_conf_enabled = 0
 
 [LANGUAGE]
 language = English

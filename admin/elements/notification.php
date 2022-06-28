@@ -29,7 +29,7 @@ if (isset($output['software']) || isset($output['run_script'])) { ?>
     </div>
 <?php }
 
-if (isset($output['options_saved']) || isset($output['cron_edited']) || isset($output['cron_new'])) { ?>
+if (isset($output['options_saved']) || isset($output['cron_edited']) || isset($output['cron_new']) || isset($output['cron_deleted'])) { ?>
     <br>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>
@@ -40,6 +40,8 @@ if (isset($output['options_saved']) || isset($output['cron_edited']) || isset($o
                     echo $language["CRON_EDITED"];
                 } elseif (isset($output['cron_new'])) {
                     echo $language["NEW_CRON_CREATED"];
+                } elseif (isset($output['cron_deleted'])) {
+                    echo $language["DELETE_CRON_CONFIRM"];
                 } ?>
             </pre>
         </strong>

@@ -113,6 +113,11 @@ $dirContents = array(
                                                             <a href="index.html?tab=create&cron_id=<?php echo $iniContent["CRON"]["cron_id"] ?>&cron_state=<?php echo $dirContentsKey; ?>"
                                                                class="btn btn-primary"
                                                                role="button"><?php echo $language["EDIT"]; ?></a>
+                                                            <a href="index.html?form_id=cron&cron_id=<?php echo $iniContent["CRON"]["cron_id"] ?>&cron_state=<?php echo $dirContentsKey; ?>&delete=true"
+                                                               class="btn btn-danger"
+                                                               role="button"
+                                                               onclick="return confirm(<?php echo $language["DELETE_CRON_CONFIRM"]; ?>)"
+                                                               style="float: right;"><?php echo $language["DELETE"]; ?></a>
                                                         </li>
                                                     </ul>
                                                 </div>
