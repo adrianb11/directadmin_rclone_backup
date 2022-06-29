@@ -741,7 +741,7 @@ Start Main Content
                         <div class="form-floating">
                             <input placeholder="Enter email address." class="form-control" name="send_email_address"
                                    id="send_email_address"
-                                   value="<?php echo $config_data["EMAIL"]["send_email_address"] ?>" required/>
+                                   value="<?php echo $config_data["EMAIL"]["send_email_address"] ?>"/>
                             <label for="send_email_address"><?php echo $language["EMAIL_ADDRESS"]; ?></label>
                         </div>
                     </div>

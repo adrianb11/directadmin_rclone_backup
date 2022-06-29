@@ -281,6 +281,60 @@ Create settings form
         <hr>
 
         <! --
+        MySQL Login Option
+        -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <?php echo $language["MYSQL_CONF_LOGIN"]; ?>
+                </h5>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="form-floating">
+                            <select class="form-select" id="my_conf_enabled" name="my_conf_enabled">
+                                <option value="1" <?php if ($directadminarray["SETTINGS"]["my_conf_enabled"] == 1) {
+                                    echo 'selected="selected"';
+                                } ?> >
+                                    <?php echo $language["TRUE"]; ?>
+                                </option>
+                                <option value="0" <?php if ($directadminarray["SETTINGS"]["my_conf_enabled"] == 0) {
+                                    echo 'selected="selected"';
+                                } ?> >
+                                    <?php echo $language["FALSE"]; ?>
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <span><?php echo $language["MYSQL_CONF_ENABLED_DESC"]; ?></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="form-floating">
+                            <input placeholder="*" class="form-control" id="my_conf_login" name="my_conf_login"
+                                   value="<?php echo $directadminarray["SETTINGS"]["my_conf_login"] ?>"
+                                   />
+                            <label for="my_conf_login"><?php echo $language["MYSQL_CONF_LOGIN"]; ?></label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <span><?php echo $language["MYSQL_CONF_LOGIN_DESC"]; ?></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <! --
         Form submit
         -->
         <div class="card">

@@ -85,6 +85,8 @@ $language = array(
     "DIRECTADMIN_DATABASE_DESC" => "Please select a database to backup (not required).",
     "DIRECTADMIN_TYPE_DESC" => "Please select the database type (not required).",
     "IGNORE_CERTIFICATE_DESC" => "Set to TRUE if root certificate cannot be verified.",
+    "MYSQL_CONF_ENABLED_DESC" => "Set to TRUE to use .my.cnf file or mysql_config_editor to backup MySQL databases.",
+    "MYSQL_CONF_LOGIN_DESC" => "Enter the username which has been added to your root .my.cnf file or mysql_config_editor.",
 
 
     //Operations
@@ -100,6 +102,9 @@ $language = array(
     "NEW_CRON_CREATED" => "New cron created successfully.",
     "CRON_EDITED" => "Cron was edited successfully.",
     "DEFAULT_OPTIONS_SAVED" => "Default options were saved successfully.",
+    "DELETE" => "Delete",
+    "DELETE_CRON" => "Cron has been deleted.",
+    "DELETE_CRON_CONFIRM" => "Are you sure you want to delete cron?",
 
     "LANGUAGE_SELECTION" => "Language Selection",
     "LANGUAGE" => "Language",
@@ -142,6 +147,8 @@ $language = array(
     "DATABASE_NAME" => "Database Name",
     "DATABASE_TYPE" => "Database Type",
     "DATABASE_TO_BACKUP" => "Database To Backup",
+    "MYSQL_CONF_ENABLED" => "Enable .my.cnf file or mysql_config_editor",
+    "MYSQL_CONF_LOGIN" => "Username from .my.cnf or mysql_config_editor",
 
     //Compression
     "DEFAULT_COMPRESSION" => "Default Compression",

@@ -1,5 +1,5 @@
 #!/bin/bash
-
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 # Parameter $1: Config file (including path)
 
 # -u: Treat unset variables as an error when substituting.
@@ -17,6 +17,9 @@ SCRIPT_DIR="${ROOT_DIR}/admin/elements/scripts"
 TMP_BACKUP_DIR="/tmp/backup"
 # Set to 0 to disable some output
 VERBOSE=1
+
+# Find mysqldump
+MYSQLDUMP=$(which mysqldump)
 
 # Include bash_ini_parser. Its an helper to parse INI-files.
 . "$SCRIPT_DIR/bash_ini_parser/read_ini.sh"
@@ -246,7 +249,14 @@ function database_backup() {
     mysql)
       log "INFO" "Backup mysql database"
       backup_file="$backup_file.sql"
-      mysqldump "$DB_NAME" > "$TMP_BACKUP_DIR/$CRON_ID/${backup_file}"
+
+        if [ "$MY_CONF_ENABLED" -eq 1 ]; then
+          log "INFO" "Use .my.cnf"
+          $MYSQLDUMP -u "$MY_CONF_LOGIN" "$DB_NAME" > "$TMP_BACKUP_DIR/$CRON_ID/${backup_file}"
+        else
+          $MYSQLDUMP "$DB_NAME" > "$TMP_BACKUP_DIR/$CRON_ID/${backup_file}"
+        fi
+
       ret=$?
       if ! [ "$ret" -eq 0 ]; then
         send_mail " ERR" "Something went wrong while backup database; mysqldump: RETURN $ret"
@@ -333,6 +343,17 @@ if ! [ -f "$1" ]; then
   send_mail " ERR" "File $1 doesn't exist"
   exit 1
 fi
+
+#
+# Parsing DA ini file
+#
+parse_ini "$ROOT_DIR/admin/elements/conf/directadmin.ini" "SETTINGS"
+if [ -z "$CONF__ALL_VARS" ]; then
+  send_mail " ERR" "No SETTINGS section found in directadmin INI"
+  exit 1
+fi
+MY_CONF_ENABLED="$CONF__SETTINGS__my_conf_enabled"
+MY_CONF_LOGIN="$CONF__SETTINGS__my_conf_login"
 
 #
 # Parsing the config file and
