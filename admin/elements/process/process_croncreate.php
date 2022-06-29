@@ -7,7 +7,7 @@ $exclude = array('REFERENCE');
  */
 $config_data = ReadINI($input_config_file);
 
-if (isset($output['delete'])) {
+if (isset($output['cron_delete'])) {
     $output_config_file = "/usr/local/directadmin/plugins/rclone_backup/admin/elements/conf/remove/" . $output['cron_id'] . ".ini";
 } else {
     $output_config_file = "/usr/local/directadmin/plugins/rclone_backup/admin/elements/conf/pending/" . $output['cron_id'] . ".ini";
@@ -33,7 +33,7 @@ if ($output['cron_state'] != "new") {
  */
 if ($output['cron_state'] != "new") {
     $output["cron_edited"] = $output['cron_id'];
-} elseif ($output['cron_state'] == "new") {
+} else {
     $output["cron_new"] = $output['cron_id'];
 }
 
